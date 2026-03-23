@@ -1,4 +1,4 @@
-name: Python Project CI/CD
+name: Run Python Script
 
 on:
   push:
@@ -8,36 +8,23 @@ on:
   workflow_dispatch: # Позволит запускать вручную для тестов
 
 jobs:
-  test-and-log-check:
+  run-script:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Копирование кода
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Установка Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.x'
 
       - name: Установка зависимостей
-        run: |
-          python -m pip install --upgrade pip
-          # Если есть requirements.txt, раскомментируйте строку ниже:
-          # pip install -r requirements.txt
+        run: python -m pip install --upgrade pip
 
-      - name: Запуск тестов
-        working-directory: ./folder
-        run: |
-          python test_logic.py
+      - name: Показать структуру файлов
+        run: ls -R
 
-      - name: Проверка работы программы (Dry run)
-        working-directory: ./folder
-        run: |
-          echo "25" | python main.py
-          if [ -f app.log ]; then 
-            echo "Лог-файл создан!"
-          else 
-            echo "Ошибка: Лог-файл не найден"
-            exit 1
-          fi
+      - name: Запуск скрипта
+        run: python wel/practic.py
