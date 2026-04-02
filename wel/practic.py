@@ -13,10 +13,11 @@ def code(x):
         else:
             print(x)
 
-def test_pipeline():
-    x = 1 / 0  # намеренная ошибка
+print(code(6))
 
-test_pipeline()
+def zero(h):
+    return h / 0
+print(zero(5))
 
     
 
