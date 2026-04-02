@@ -13,8 +13,10 @@ def code(x):
         else:
             print(x)
 
-print(code(6))
-t =2000,
+def test_pipeline():
+    x = 1 / 0  # намеренная ошибка
+
+test_pipeline()
 
     
 
